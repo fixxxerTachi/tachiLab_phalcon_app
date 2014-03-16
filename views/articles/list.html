@@ -1,0 +1,8 @@
+<div id='list'>
+	{{ flashMess.output() }}
+	<h2>article list</h2>
+	{% for a in articles %}
+	<p><a href='/articles/edit/{{a.id}}'>{{ a.title }}</a>&nbsp;
+		<button type='button' class='btn btn-default'><a href='/articles/delete/{{a.id}}'>delete</a></button></p>
+	{% endfor %}
+</div>

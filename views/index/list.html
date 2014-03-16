@@ -1,0 +1,8 @@
+{% extends 'layouts/articles.html' %}
+{% block content %}
+	{% for a in articles %}
+	<p><a href='/index/edit/{{a.id}}'>{{ a.title }}</a>|<a href='/articles/delete/{{a.id}}'>delete</a></p>
+	{% endfor %}
+{% endblock %}
+{% block tag %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'extends/articles.html' %}
+{% block content %}
+<ul class='pagination'>
+{% if page.current != 1 %}
+<li><a href="/?page={{page.current-3}}{% if search %}&search={{search}}{% endif %}">&laquo;</a></li>
+<li><a href="/?page={{page.before}}{% if search %}&search={{search}}{% endif %}">{{page.before}}</a></li>
+{% endif %}
+<li class='active'><a href="/?page={{page.current}}{% if search %}&search={{search}}{% endif %}">{{page.current}}</a></li>
+{% if page.total_pages != 1 %}
+<li><a href="/?page={{page.next}}{% if search %}&search={{search}}{% endif %}">{{page.next}}</a></li>
+{% if page.current == 1 %}
+<li><a href="/?page={{page.current+2}}{% if search %}&search={{search}}{% endif %}">&raquo;</a></li>
+{% endif %}
+{% if page.current !=1 %}
+<li><a href="/?page={{page.current+3}}{% if search %}&search={{search}}{% endif %}">&raquo;</a></li>
+{% endif %}
+{% endif %}
+</ul>
+{% for a in page.items %}
+<div class='content'>
+	<h2>{{ a.title }}</h2>
+	<p>{{ a.contents|nl2br }}</p>
+	<p>{{ a.tag }}</p>
+	<p>{{ a.created_at }}</p>
+</div>
+{% endfor %}
+<ul class='pagination'>
+{% if page.current != 1 %}
+<li><a href="/?page={{page.current-3}}{% if search %}&search={{search}}{% endif %}">&laquo;</a></li>
+<li><a href="/?page={{page.before}}{% if search %}&search={{search}}{% endif %}">{{page.before}}</a></li>
+{% endif %}
+<li class='active'><a href="/?page={{page.current}}{% if search %}&search={{search}}{% endif %}">{{page.current}}</a></li>
+{% if page.total_pages != 1 %}
+<li><a href="/?page={{page.next}}{% if search %}&search={{search}}{% endif %}">{{page.next}}</a></li>
+{% if page.current == 1 %}
+<li><a href="/?page={{page.current+2}}{% if search %}&search={{search}}{% endif %}">&raquo;</a></li>
+{% endif %}
+{% if page.current !=1 %}
+<li><a href="/?page={{page.current+3}}{% if search %}&search={{search}}{% endif %}">&raquo;</a></li>
+{% endif %}
+{% endif %}
+</ul>
+{% endblock %}
+
+{% block calender %}
+<div id='calender'>calender</div>
+{% endblock %}
+
+{% block news %}
+<h2 id='news_title'>最近の記事一覧</h2>
+<div class='news'>
+{% for n in news %}
+<p><a href='/?article={{ n.id }}'>{{ n.title }}</a></p>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block tag %}
+<h2>タグ一覧</h2>
+<div class='tag'>
+{% for t in tags %}
+<p class='btn btn-default'><a href='/?search={{t}}'>{{t}}</a></p>
+{% endfor %}
+</div>
+{% endblock %}
